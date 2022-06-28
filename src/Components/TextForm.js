@@ -32,7 +32,7 @@ const ClearText = ()=>{
 console.log("ClearText button was clicked");
 let newText= " ";
 setText(newText);
-props.showAlert("Cleared Text","success");
+props.showAlert("Text is Cleared ","success");
   
 }
 
