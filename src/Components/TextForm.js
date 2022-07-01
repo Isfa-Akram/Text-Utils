@@ -4,13 +4,14 @@ import './style.css';
 
 export default function TextForm(props) {
 
+ let disabled=true;
 //text is basically a state, setText is used to update a text 
 //this is the syntax of hooks we can set or update value by using this hook
 
 //text="update text" //this is a wrong way to update a text react will give us an error
 //setText=("new text"); //this is a correct way to update a text 
 
-const[text, setText] = useState("Enter Your Text");
+const[text, setText] = useState("Enter your Text...");
 
 const UpperTextChange = ()=>{
 console.log("UpperCase button was clicked");
@@ -55,11 +56,12 @@ const handleOnChange = (event)=>{
 console.log("On Change function was envoked");
 //we can write some values in text box with the help of this setText 
 setText(event.target.value);
+//disabled=false;
 
 
 }
 
-const InvertCase =()=>{
+/*const InvertCase =()=>{
   
   let obj;
 
@@ -81,7 +83,7 @@ const InvertCase =()=>{
     setText(obj);
   }
   props.showAlert("Converted to Invert Case","success");
-}
+}*/
 
 const TitleCase=() =>{
     let newText = text.split(" ").map(function (word, index) {
@@ -96,7 +98,7 @@ const TitleCase=() =>{
     }
 
   const LightBack=() =>{
-      document.body.style.backgroundColor = "lightgrey";
+      document.body.style.backgroundColor = "LightGrey";
       props.showAlert("LightGrey Color Enabled","success");
       }
   const DarkBack=() =>{
@@ -105,9 +107,11 @@ const TitleCase=() =>{
         }
 
   const CopyText= ()=>{
+
     let obj = document.getElementById("box");
     obj.select();
     navigator.clipboard.writeText(obj.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Text is Copied","success");
 
   }
@@ -129,28 +133,25 @@ return (
     </div>
 
     <div className="container my-3">
-        <h6 className="text-success">The count of words is:{ text.split(" ").length} </h6>
+        <h6 className="text-success">The count of words is:{ text.split(/\s+/).filter((element)=>{return element.length!==0}).length} </h6>
         <h6 className="text-success">The count of characters is:{ text.length} </h6>
-        <h6 className="text-success">The time to read these words is:{ 0.008 * text.split(" ").length} minutes </h6>
+        <h6 className="text-success">The time to read these words is:{ 0.08 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes </h6>
         <h5 className="text-dark my-3">Preview</h5>
         <h6 className="text-success">{text}</h6>
     </div>
 
     <div className="container my-3">
-        <button className="bg-success mx-2" onClick={UpperTextChange} >Covert to UpperCase</button>
-        <button className="bg-success mx-2" onClick={LowerTextChange} >Covert to LowerCase</button>
-        <button className="bg-success mx-2" onClick={ClearText} >Clear Text</button>
-        <button className="bg-success mx-2" onClick={SubString} >SubString</button>
-        
-        <button className="bg-success mx-2" onClick={InvertCase} >Invert Case</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={UpperTextChange} >UpperCase</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={LowerTextChange} >LowerCase</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={ClearText} >Clear Text</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={SubString} >SubString</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={TitleCase} >Title Case</button>
 
-        <button className="bg-success mx-2" onClick={TitleCase} >Title Case</button>
-        <button className="bg-success mx-2" onClick={Speak} >Speak</button>
-        <button className="bg-success mx-2" onClick={CopyText} >Copy Text</button>
-
-        <button className="bg-success mx-2 my-4" onClick={ExtraSpace} >Remove Extra Spaces</button>
-        <span><button className="bg-success mx-2 " onClick={LightBack} >Change you background with lighter mode</button></span>
-        <button className="bg-success mx-2" onClick={DarkBack} >Change you background with darker mode</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={Speak} >Speak</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={CopyText} >Copy Text</button>
+        <button disabled={text.length===0} className="bg-success mx-2 my-4" onClick={ExtraSpace} >Remove Extra Spaces</button>
+        <button disabled={text.length===0} className="bg-success mx-2 " onClick={LightBack} >Change you background with lighter mode</button>
+        <button disabled={text.length===0} className="bg-success mx-2" onClick={DarkBack} >Change you background with darker mode</button>
        </div>
 
 </div>

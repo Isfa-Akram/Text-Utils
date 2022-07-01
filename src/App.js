@@ -2,15 +2,15 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
-//import About from './Components/About';
+import About from './Components/About';
 import React, { useState } from 'react';
 import Alert from './Components/Alert';
-/*import {
-  BrowserRouter as Router,
+import {
+  HashRouter,
   Routes ,
   Route
   
-} from 'react-router-dom';*/
+} from 'react-router-dom';
 
 
 
@@ -50,42 +50,35 @@ function App() {
     {
       SetMode('success');
       document.body.style.backgroundColor = 'white';
-     showAlert("Light Mode has been enabled", "success");
-     document.title='TextUtils-Light Mode';
-
-
-     //function to change title after certain interval of time
-     /*setInterval(() => {
-      document.title='Enabled Dark mode';}, 2000);*/
-    
-
+      showAlert("Light Mode has been enabled", "success");
+      document.title='TextUtils-Light Mode';
     }
   }
 
 
   return (
     <>
-{/*<Router>*/}
-   <Navbar title="TextUtils" about="About Us" cont="Contact" drop="Dropdown" mode={mode} toggleMode={toggleMode}/> 
+<HashRouter>
+   <Navbar title="TextUtils" about="About Us"  drop="Colors" mode={mode} toggleMode={toggleMode}/> 
     
     <Alert alert={alert}/>
 
    <div className=" container my-5">
 
-   {/*} <Routes>
+   <Routes>
 
         <Route exact path='/about'
         element={<About/>}/>
         
 
-  <Route exact path='/text'*/}
-      <TextForm heading="ENTER YOUR TEXT TO ANALYZE BELOW" showAlert={showAlert}/>
-        
-    {/*</Routes>*/}
+        <Route exact path='/text'
+      element={<TextForm heading="ENTER YOUR TEXT TO ANALYZE BELOW" showAlert={showAlert}/>}/>
+
+  </Routes>
     
     </div>
 
-{/*</Router>*/}
+</HashRouter>
   
     </>
   );
