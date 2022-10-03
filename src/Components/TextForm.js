@@ -4,11 +4,8 @@ import './style.css';
 
 export default function TextForm(props) {
 
- let disabled=true;
 //text is basically a state, setText is used to update a text 
 //this is the syntax of hooks we can set or update value by using this hook
-
-//text="update text" //this is a wrong way to update a text react will give us an error
 //setText=("new text"); //this is a correct way to update a text 
 
 const[text, setText] = useState("Enter your Text...");
@@ -18,8 +15,6 @@ console.log("UpperCase button was clicked");
 let newText = text.toUpperCase();
 setText(newText);
 props.showAlert("Converted to Upper Case","success");
-
-
 }
 
 const LowerTextChange = ()=>{
@@ -38,7 +33,6 @@ props.showAlert("Text is Cleared ","success");
 }
 
 const SubString = ()=>{
-
 let newText= text.substring(7,39);
 setText("The substring of sentence is: " + newText);
 props.showAlert("Converted to Sub String","success"); 
@@ -49,41 +43,17 @@ let msg = new SpeechSynthesisUtterance();
 msg.text = text;
 window.speechSynthesis.speak(msg);
 props.showAlert("Listening Text Mode is Enabled","success");
-
 }
+
 
 const handleOnChange = (event)=>{
 console.log("On Change function was envoked");
 //we can write some values in text box with the help of this setText 
 setText(event.target.value);
-//disabled=false;
+
 
 
 }
-
-/*const InvertCase =()=>{
-  
-  let obj;
-
-  let upper= text.toUpperCase();
-  let lower= text.toLowerCase();
-
-  //if(obj===text.toUpperCase())
-  if(obj===upper)
-  {
-    //obj=text.toLowerCase;
-    obj=lower;
-    setText(obj);
-    console.log("hello ");
-  }
-  else
-  {
-    //obj=text.toUpperCase();
-    obj=upper;
-    setText(obj);
-  }
-  props.showAlert("Converted to Invert Case","success");
-}*/
 
 const TitleCase=() =>{
     let newText = text.split(" ").map(function (word, index) {

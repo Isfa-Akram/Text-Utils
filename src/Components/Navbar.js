@@ -69,12 +69,6 @@ export default function Navbar(props) {
            </ul>
         </li>
       </ul>
-      {/*<form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-dark" type="submit">Search</button>
-      </form>*/}
-
-    
 
       <div className="form-check form-switch text-light">
         <input type="checkbox" className="form-check-input" onClick={props.toggleMode} id="customSwitch1"/>
@@ -89,9 +83,6 @@ export default function Navbar(props) {
   )
 }
 
-//proptypes
-//isRequired is used to must fill its place otherwise it will gives us an error but if some default value is set
-// then it will occupies an empty space
 Navbar.propTypes = {
   title :PropTypes.string.isRequired,
   about :PropTypes.string,
